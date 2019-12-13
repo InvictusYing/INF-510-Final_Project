@@ -50,10 +50,7 @@ try:
 except:
     print('div does not find')
 # Transfer CVS Data into SQL
-conn = sqlite3.connect('Markets.db')
-cur = conn.cursor()
-
-conn = sqlite3.connect('Raw_Data.db')
+conn = sqlite3.connect('../data/Raw_Data.db')
 cur = conn.cursor()
 
 #cur.execute('DROP TABLE IF EXISTS Markets')

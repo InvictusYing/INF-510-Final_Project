@@ -26,7 +26,7 @@ from shapely.geometry import Point, Polygon
 # In[2]:
 
 
-la_path = 'Los_Angeles_City_Zip_Codes.shp'
+la_path = '../data/Los_Angeles_City_Zip_Codes.shp'
 la = gpd.read_file(la_path, encoding='utf-8')
 la.plot()
 
@@ -42,7 +42,7 @@ import csv
 # In[4]:
 
 
-crime = pd.read_csv('Crime_2019.csv')
+crime = pd.read_csv('../data/Crime_2019.csv')
 crime = crime.rename(columns={'lat':'y','lon':'x'})
 
 

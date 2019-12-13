@@ -32,7 +32,7 @@ SEARCH_PATH = '/v3/businesses/search'
 
 #input zipcode
 try:
-    with open('Los_Angeles_City_Zip_Codes.csv','r') as f:
+    with open('../data/Los_Angeles_City_Zip_Codes.csv','r') as f:
         for line in f:
             zipcode.append(line.split(',')[2])
     zipcode1 = zipcode[1:]

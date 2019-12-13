@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup
 import sqlite3
 url = 'http://www.laalmanac.com/employment/em12c.php'
 income = []
-path = 'Los_Angeles_City_Zip_Codes.csv'
+path = '../data/Los_Angeles_City_Zip_Codes.csv'
 zipcode = []
 try:
     with open(path,'r') as f:
@@ -49,7 +49,7 @@ for i in income:
         data.append(i[1])
         city_income.append(data)
 #Create Raw_data Database to store raw data
-conn = sqlite3.connect('Raw_Data.db')
+conn = sqlite3.connect('../data/Raw_Data.db')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS INCOME')
@@ -62,7 +62,7 @@ except:
 conn.commit()
 
 # Create Analysis Database
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 
 cur.execute('DROP TABLE IF EXISTS INCOME')

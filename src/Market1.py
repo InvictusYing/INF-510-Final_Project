@@ -70,7 +70,7 @@ except:
     print('div does not find')
     
 # Transfer Trade Joe's Data into SQL
-conn = sqlite3.connect('Raw_Data.db')
+conn = sqlite3.connect('../data/Raw_Data.db')
 cur = conn.cursor()
 
 try:

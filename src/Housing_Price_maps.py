@@ -26,7 +26,7 @@ from shapely.geometry import Point, Polygon
 # In[11]:
 
 
-la_path = 'Los_Angeles_City_Zip_Codes.shp'
+la_path = '../data/Los_Angeles_City_Zip_Codes.shp'
 la = gpd.read_file(la_path, encoding='utf-8')
 la.plot()
 
@@ -42,7 +42,7 @@ import csv
 # In[4]:
 
 
-housing_price = pd.read_csv('median_housing_price.csv')
+housing_price = pd.read_csv('../data/median_housing_price.csv')
 housing_price = housing_price['Avg Median Housing Price']
 la['housing_price']=housing_price
 
@@ -60,7 +60,7 @@ ax.set_axis_off()
 # In[7]:
 
 
-median_income = pd.read_csv('income_zipcode.csv')
+median_income = pd.read_csv('../data/income_zipcode.csv')
 median_income = median_income['Median_Income']
 la['median_income']=median_income
 
@@ -78,7 +78,7 @@ ax.set_axis_off()
 # In[9]:
 
 
-restaurant = pd.read_csv('restaurant_count.csv')
+restaurant = pd.read_csv('../data/restaurant_count.csv')
 restaurant = restaurant['Id']
 la['restaurant']=restaurant
 

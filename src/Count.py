@@ -9,11 +9,11 @@ import sqlite3
 import pandas
 import csv
 
-hprice = pandas.read_csv('median_housing_price.csv')
+hprice = pandas.read_csv('../data/median_housing_price.csv')
 hprice_zip = hprice['Zipcode']
 #For crime dataset
 crime_count_list = []
-crime = pandas.read_csv('Crime_2019.csv')
+crime = pandas.read_csv('../data/Crime_2019.csv')
 crime_count = crime.groupby('Zipcode').count()
 for i in hprice_zip:
     data = []
@@ -25,7 +25,7 @@ for i in hprice_zip:
     crime_count_list.append(data)
 #print(crime_count_list)
 
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS CRIME')
 cur.execute("CREATE TABLE CRIME (zipcode INTEGER, count INTEGER)")
@@ -37,7 +37,7 @@ except:
 conn.commit()
 #For house price data
 house_count_list = []
-house = pandas.read_csv('median_housing_price.csv')
+house = pandas.read_csv('../data/median_housing_price.csv')
 print(house)
 house_count = house['Zipcode']
 for i in hprice_zip:
@@ -50,7 +50,7 @@ for i in hprice_zip:
     house_count_list.append(data)
 #print(crime_count_list)
 
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS CRIME')
 cur.execute("CREATE TABLE CRIME (zipcode INTEGER, count INTEGER)")
@@ -62,7 +62,7 @@ except:
 conn.commit()
 #For Restaurants data
 restaurants_count_list = []
-restaurants = pandas.read_csv('Restaurants.csv')
+restaurants = pandas.read_csv('..data/Restaurants.csv')
 restaurants_count = restaurants.groupby('Zipcode').count()
 print(restaurants_count)
 for i in hprice_zip:
@@ -75,7 +75,7 @@ for i in hprice_zip:
     restaurants_count_list.append(data)
 print(restaurants_count_list)
 
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS RESTAURANTS')
 cur.execute("CREATE TABLE RESTAURANTS (zipcode INTEGER, count INTEGER)")
@@ -87,7 +87,7 @@ except:
 conn.commit()
 #For Market data
 Market_count_list = []
-conn = sqlite3.connect('Raw_Data.db')
+conn = sqlite3.connect('../data/Raw_Data.db')
 cur = conn.cursor()
 try:
     cur.execute('SELECT zipcode, count(*) FROM Markets GROUP BY zipcode')
@@ -108,7 +108,7 @@ for i in hprice_zip:
         data.append(0)
     Market_count_list.append(data)
 
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS MARKETS')
 cur.execute("CREATE TABLE MARKETS (zipcode INTEGER, count INTEGER)")
@@ -120,7 +120,7 @@ except:
 conn.commit()
 #For income data
 income_count_list = []
-conn = sqlite3.connect('Raw_Data.db')
+conn = sqlite3.connect('../data/Raw_Data.db')
 cur = conn.cursor()
 try:
     cur.execute('SELECT * FROM INCOME')
@@ -142,7 +142,7 @@ for i in hprice_zip:
         data.append(60197)
     income_count_list.append(data)
 print(income_count_list)
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute('DROP TABLE IF EXISTS INCOME')
 cur.execute("CREATE TABLE INCOME (zipcode INTEGER, count INTEGER)")
@@ -153,7 +153,7 @@ except:
     print("insert failed")
 conn.commit()
 #Join all data together 
-conn = sqlite3.connect('Regression.db')
+conn = sqlite3.connect('../data/Regression.db')
 cur = conn.cursor()
 cur.execute("SELECT DISTINCT* FROM (((INCOME JOIN MARKETS ON INCOME.zipcode = MARKETS.Zipcode)JOIN RESTAURANTS ON INCOME.zipcode = RESTAURANTS.zipcode)JOIN CRIME ON INCOME.zipcode = CRIME.Zipcode)JOIN HOUSE ON INCOME.zipcode = HOUSE.Zipcode")
 result = cur.fetchall()
